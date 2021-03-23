@@ -18,6 +18,18 @@ export default function AjouterDossier({ouvert, setOuvert, gererAjout}) {
     setCouleur('#537169');
   }
 
+  const styleAjout = {
+    color: 'white',
+    backgroundColor: 'green',
+    margin: '2%'
+  }
+
+  const styleAnnul = {
+    color: 'white',
+    backgroundColor: 'darkred',
+    margin: '2%'
+  }
+
   return (
     <div className="AjouterDossier">
       <Dialog open={ouvert} onClose={()=>setOuvert(false)} aria-labelledby="form-dialog-title">
@@ -25,7 +37,7 @@ export default function AjouterDossier({ouvert, setOuvert, gererAjout}) {
         <DialogContent>
           <TextField
             autoFocus
-            margin="dense"
+            margin="normal"
             id="nomDossier"
             label="Nom du dossier"
             type="text"
@@ -34,7 +46,7 @@ export default function AjouterDossier({ouvert, setOuvert, gererAjout}) {
             defaultValue={nom}
           />
           <TextField
-            margin="dense"
+            margin="normal"
             id="urlImage"
             label="Adresse de l'image de couverture"
             type="text"
@@ -46,14 +58,14 @@ export default function AjouterDossier({ouvert, setOuvert, gererAjout}) {
             width="100%" 
             triangle="hide" 
             onChangeComplete={(couleur, e) => setCouleur(couleur.hex)}
-            color={couleur}
+            colors={['#43725c', '#45caa7', '#ecd59e', '#eed575', '#ea8a8a', '#4f7d9c']}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=>{setOuvert(false); viderChamps()}} color="primary">
+          <Button onClick={()=>{setOuvert(false); viderChamps()}} style={styleAnnul}>
             Annuler
           </Button>
-          <Button onClick={() => {nom !== '' && gererAjout(nom, couverture, couleur); viderChamps(); }} color="primary">
+          <Button onClick={() => {nom !== '' && gererAjout(nom, couverture, couleur); viderChamps(); }} style={styleAjout}>
             Ajouter
           </Button>
         </DialogActions>
